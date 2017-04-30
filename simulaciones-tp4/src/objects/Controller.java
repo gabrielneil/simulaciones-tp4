@@ -15,9 +15,11 @@ public class Controller {
 
     private static Controller controller;
     static Main main;
+    static Calculator calculator;
 
     protected Controller(Main menu) {
-
+        main = menu;
+        calculator = new Calculator();
     }
 
     public static Controller getInstance(Main menu) {
@@ -33,4 +35,9 @@ public class Controller {
     public void setMain(Main menu) {
         main = menu;
     }
+
+    public void iniciar(int cantSim, int desde, int hasta) {
+        calculator.tablas(cantSim, desde, hasta);
+    }
+
 }

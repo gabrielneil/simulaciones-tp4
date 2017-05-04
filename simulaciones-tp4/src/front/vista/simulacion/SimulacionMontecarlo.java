@@ -27,8 +27,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -56,26 +55,28 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
         setTitle("Vector Estado");
 
         tblPrimerTiro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {"7", "0.12", "0.12", "0", "11"},
-                {"8", "0.15", "0.27", "12", "26"},
-                {"9", "0.18", "0.45", "27", "44"},
-                {"10", "0.55", "1.00", "45", "99"}
+            new Object [][] {
+                { new Integer(7),  new Float(0.12),  new Float(0.12),  new Integer(0),  new Integer(11)},
+                { new Integer(8),  new Float(0.15),  new Float(0.27),  new Integer(12),  new Integer(26)},
+                { new Integer(9),  new Float(0.18),  new Float(0.45),  new Integer(27),  new Integer(44)},
+                { new Integer(10),  new Float(0.55),  new Float(1.0),  new Integer(45),  new Integer(99)}
             },
-            new String []
-            {
+            new String [] {
                 "# Pinos", "Probabilidad", "P. Acumulada", "Desde", "Hasta"
             }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
@@ -83,26 +84,28 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
         _scpPrimerTiro.setViewportView(tblPrimerTiro);
 
         tblDespues7.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {"0", "0.02", "0.02", "0", "1"},
-                {"1", "0.10", "0.12", "2", "11"},
-                {"2", "0.45", "0.57", "12", "56"},
-                {"3", "0.43", "1.00", "57", "99"}
+            new Object [][] {
+                { new Integer(0),  new Float(0.02),  new Float(0.02),  new Integer(0),  new Integer(1)},
+                { new Integer(1),  new Float(0.1),  new Float(0.12),  new Integer(2),  new Integer(11)},
+                { new Integer(2),  new Float(0.45),  new Float(0.57),  new Integer(12),  new Integer(56)},
+                { new Integer(3),  new Float(0.43),  new Float(1.0),  new Integer(57),  new Integer(99)}
             },
-            new String []
-            {
+            new String [] {
                 "# Pinos", "Probabilidad", "P. Acumulada", "Desde", "Hasta"
             }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
@@ -110,25 +113,27 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
         _scpSegundoTiro7.setViewportView(tblDespues7);
 
         tblDespues8.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {"0", "0.04", "0.04", "0", "3"},
-                {"1", "0.20", "0.24", "4", "23"},
-                {"2", "0.76", "1.00", "24", "99"}
+            new Object [][] {
+                { new Integer(0),  new Float(0.04),  new Float(0.04),  new Integer(0),  new Integer(3)},
+                { new Integer(1),  new Float(0.2),  new Float(0.24),  new Integer(4),  new Integer(23)},
+                { new Integer(2),  new Float(0.76),  new Float(1.0),  new Integer(24),  new Integer(99)}
             },
-            new String []
-            {
+            new String [] {
                 "# Pinos", "Probabilidad", "P. Acumulada", "Desde", "Hasta"
             }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
-                false, false, false, false, false
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, true
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
@@ -136,16 +141,29 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
         _scpSegundoTiro8.setViewportView(tblDespues8);
 
         tblDespues9.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {"0", "0.06", "0.06", "0", "5"},
-                {"1", "0.94", "1.00", "6", "99"}
+            new Object [][] {
+                { new Integer(0),  new Float(0.06),  new Float(0.06),  new Integer(0),  new Integer(5)},
+                { new Integer(1),  new Float(0.94),  new Float(1.0),  new Integer(6),  new Integer(99)}
             },
-            new String []
-            {
+            new String [] {
                 "# Pinos", "Probabilidad", "P. Acumulada", "Desde", "Hasta"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblDespues9.getTableHeader().setReorderingAllowed(false);
         _scpSegundoTiro9.setViewportView(tblDespues9);
 
@@ -221,30 +239,24 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
         jTabbedPane1.addTab("Distribuciones de Frecuencias", jPanel1);
 
         _tblMontecarlo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
+            new String [] {
                 "#", "# Simulacion", "RND1", "1° Tiro", "RND2", "2° Tiro", "Total Pinos", "Puntos totales", "Puntos acumulados", "Supera 120 (S|N)", "Acumulador Supera 120"
             }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
+        ) {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         _tblMontecarlo.getTableHeader().setReorderingAllowed(false);
         _scpMontecarlo.setViewportView(_tblMontecarlo);
-        if (_tblMontecarlo.getColumnModel().getColumnCount() > 0)
-        {
+        if (_tblMontecarlo.getColumnModel().getColumnCount() > 0) {
             _tblMontecarlo.getColumnModel().getColumn(0).setResizable(false);
             _tblMontecarlo.getColumnModel().getColumn(0).setPreferredWidth(20);
             _tblMontecarlo.getColumnModel().getColumn(1).setResizable(false);

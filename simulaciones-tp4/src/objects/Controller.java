@@ -6,7 +6,7 @@
 package objects;
 
 import front.Main;
-
+import front.vista.simulacion.SimulacionMontecarlo;
 /**
  *
  * @author gabrielneil
@@ -16,10 +16,12 @@ public class Controller {
     private static Controller controller;
     static Main main;
     static Calculator calculator;
+    private SimulacionMontecarlo tablaSimulacion;
 
     protected Controller(Main menu) {
         main = menu;
         calculator = new Calculator();
+        tablaSimulacion = new SimulacionMontecarlo();
     }
 
     public static Controller getInstance(Main menu) {
@@ -36,8 +38,11 @@ public class Controller {
         main = menu;
     }
 
+    public Main getMain(){
+    return main;
+    }
     public void iniciar(int cantSim, int desde, int hasta) {
-        calculator.tablas(cantSim, desde, hasta);
+        calculator.tablas(tablaSimulacion, cantSim, desde, hasta);
     }
 
 }

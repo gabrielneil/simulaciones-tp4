@@ -29,7 +29,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        simulationTable = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         _scpPrimerTiro = new javax.swing.JScrollPane();
         tblPrimerTiro = new javax.swing.JTable();
@@ -236,19 +236,26 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Distribuciones de Frecuencias", jPanel1);
+        simulationTable.addTab("Distribuciones de Frecuencias", jPanel1);
 
         _tblMontecarlo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "#", "# Simulacion", "RND1", "1° Tiro", "RND2", "2° Tiro", "Total Pinos", "Puntos totales", "Puntos acumulados", "Supera 120 (S|N)", "Acumulador Supera 120"
+                "# Simulación", "# Ronda", "RND1", "1° Tiro", "RND2", "2° Tiro", "Total Pinos", "Puntos totales", "Puntos acumulados", "Supera 120 (S|N)", "Acumulador Supera 120"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Integer.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -258,7 +265,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
         _scpMontecarlo.setViewportView(_tblMontecarlo);
         if (_tblMontecarlo.getColumnModel().getColumnCount() > 0) {
             _tblMontecarlo.getColumnModel().getColumn(0).setResizable(false);
-            _tblMontecarlo.getColumnModel().getColumn(0).setPreferredWidth(20);
+            _tblMontecarlo.getColumnModel().getColumn(0).setPreferredWidth(60);
             _tblMontecarlo.getColumnModel().getColumn(1).setResizable(false);
             _tblMontecarlo.getColumnModel().getColumn(1).setPreferredWidth(60);
             _tblMontecarlo.getColumnModel().getColumn(2).setResizable(false);
@@ -329,7 +336,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
                 .addGap(40, 40, 40))
         );
 
-        jTabbedPane1.addTab("Simulacion", jPanel2);
+        simulationTable.addTab("Simulacion", jPanel2);
 
         jButton1.setText("Volver");
 
@@ -341,14 +348,14 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(simulationTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1193, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(simulationTable, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -424,13 +431,13 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
     private javax.swing.JScrollPane _scpSegundoTiro7;
     private javax.swing.JScrollPane _scpSegundoTiro8;
     private javax.swing.JScrollPane _scpSegundoTiro9;
-    private javax.swing.JTable _tblMontecarlo;
+    public javax.swing.JTable _tblMontecarlo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDespues9;
+    private javax.swing.JTabbedPane simulationTable;
     private javax.swing.JTable tblDespues7;
     private javax.swing.JTable tblDespues8;
     private javax.swing.JTable tblDespues9;

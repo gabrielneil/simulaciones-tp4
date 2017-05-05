@@ -28,7 +28,7 @@
               <EmptySpace pref="33" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTabbedPane1" min="-2" pref="1193" max="-2" attributes="0"/>
+                  <Component id="simulationTable" min="-2" pref="1193" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -38,7 +38,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="472" max="-2" attributes="0"/>
+              <Component id="simulationTable" min="-2" pref="472" max="-2" attributes="0"/>
               <EmptySpace pref="22" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+    <Container class="javax.swing.JTabbedPane" name="simulationTable">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -519,22 +519,22 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="11" rowCount="0">
-                        <Column editable="false" title="#" type="java.lang.Object"/>
-                        <Column editable="false" title="# Simulacion" type="java.lang.Object"/>
-                        <Column editable="false" title="RND1" type="java.lang.Object"/>
-                        <Column editable="false" title="1&#xb0; Tiro" type="java.lang.Object"/>
-                        <Column editable="false" title="RND2" type="java.lang.Object"/>
-                        <Column editable="false" title="2&#xb0; Tiro" type="java.lang.Object"/>
-                        <Column editable="false" title="Total Pinos" type="java.lang.Object"/>
-                        <Column editable="false" title="Puntos totales" type="java.lang.Object"/>
-                        <Column editable="false" title="Puntos acumulados" type="java.lang.Object"/>
-                        <Column editable="false" title="Supera 120 (S|N)" type="java.lang.Object"/>
-                        <Column editable="false" title="Acumulador Supera 120" type="java.lang.Object"/>
+                        <Column editable="false" title="# Simulaci&#xf3;n" type="java.lang.Integer"/>
+                        <Column editable="false" title="# Ronda" type="java.lang.Integer"/>
+                        <Column editable="false" title="RND1" type="java.lang.Integer"/>
+                        <Column editable="false" title="1&#xb0; Tiro" type="java.lang.Integer"/>
+                        <Column editable="false" title="RND2" type="java.lang.Integer"/>
+                        <Column editable="false" title="2&#xb0; Tiro" type="java.lang.Integer"/>
+                        <Column editable="false" title="Total Pinos" type="java.lang.Integer"/>
+                        <Column editable="false" title="Puntos totales" type="java.lang.Integer"/>
+                        <Column editable="false" title="Puntos acumulados" type="java.lang.Integer"/>
+                        <Column editable="false" title="Supera 120 (S|N)" type="java.lang.Boolean"/>
+                        <Column editable="false" title="Acumulador Supera 120" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -595,6 +595,9 @@
                       <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

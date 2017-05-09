@@ -441,6 +441,6 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
     private javax.swing.JTable tblDespues7;
     private javax.swing.JTable tblDespues8;
     private javax.swing.JTable tblDespues9;
-    private javax.swing.JTable tblPrimerTiro;
+    public javax.swing.JTable tblPrimerTiro;
     // End of variables declaration//GEN-END:variables
 }

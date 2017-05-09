@@ -39,10 +39,16 @@ public class Calculator {
             //nro experimento
             DefaultTableModel tm = (DefaultTableModel) tablaSimulacion._tblMontecarlo.getModel();
             float rnd1 = r.nextFloat();
+            float tiro1 = calculoTiro(rnd1, tablaSimulacion);
             float rnd2 = r.nextFloat();
             tm.addRow(new Object[]{cantExperimentos, contador, rnd1, 123, rnd2, 123, 123, 123, 123, false, 123});
             contador++;
         }
         cantExperimentos++;
+    }
+
+    private float calculoTiro(float rnd1, SimulacionMontecarlo tablaSimulacion) {
+            DefaultTableModel tm = (DefaultTableModel) tablaSimulacion.tblPrimerTiro.getModel();
+        return 1232;
     }
 }

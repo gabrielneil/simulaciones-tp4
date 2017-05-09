@@ -7,6 +7,7 @@ package objects;
 
 import front.Main;
 import front.vista.simulacion.SimulacionMontecarlo;
+
 /**
  *
  * @author gabrielneil
@@ -38,9 +39,10 @@ public class Controller {
         main = menu;
     }
 
-    public Main getMain(){
-    return main;
+    public Main getMain() {
+        return main;
     }
+
     public void iniciar(int cantSim, int desde, int hasta) {
         calculator.tablas(tablaSimulacion, cantSim, desde, hasta);
     }

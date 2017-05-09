@@ -18,13 +18,14 @@ import javax.swing.table.DefaultTableModel;
 public class Calculator {
 
 //cantidad de simulaciones realizadas 
-int cantExperimentos = 1;
+    int cantExperimentos = 1;
+
     public Calculator() {
 
     }
 
-    public void tablas(SimulacionMontecarlo tablaSimulacion,int cantSim, int desde, int hasta) {
-tablaSimulacion.setVisible(true);
+    public void tablas(SimulacionMontecarlo tablaSimulacion, int cantSim, int desde, int hasta) {
+        tablaSimulacion.setVisible(true);
         for (int i = 0; i < cantSim; i++) {
             simulacion(tablaSimulacion);
         }
@@ -37,13 +38,10 @@ tablaSimulacion.setVisible(true);
         for (int i = 0; i < 10; i++) {
             //nro experimento
             DefaultTableModel tm = (DefaultTableModel) tablaSimulacion._tblMontecarlo.getModel();
-            tm.addRow(new Object[]{cantExperimentos,contador,rnd.format(r.nextFloat()),123,rnd.format(r.nextFloat()),123,123,123,123,false,123});
-//            tabla[i][0] = contador;
-//            //rnd1
-//            tabla[i][1] = r.nextFloat();
-//            //rnd2
-//            tabla[i][3] = r.nextFloat();
-        contador++;
+            float rnd1 = r.nextFloat();
+            float rnd2 = r.nextFloat();
+            tm.addRow(new Object[]{cantExperimentos, contador, rnd1, 123, rnd2, 123, 123, 123, 123, false, 123});
+            contador++;
         }
         cantExperimentos++;
     }

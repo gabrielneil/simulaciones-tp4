@@ -136,11 +136,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_salir_btnActionPerformed
 
     private void comenzar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comenzar_btnActionPerformed
-
-        if ((cantSim_txt.getText() != "" && desde_txt.getText() != "" && hasta_txt.getText() != "") && (Integer.parseInt(cantSim_txt.getText()) > 0 && Integer.parseInt(desde_txt.getText()) > 0 && Integer.parseInt(hasta_txt.getText()) > 0) && (Integer.parseInt(desde_txt.getText()) < Integer.parseInt(hasta_txt.getText()))) {
+        
+        if ((cantSim_txt.getText() != "" && desde_txt.getText() != "" && hasta_txt.getText() != "") && (Integer.parseInt(cantSim_txt.getText()) > 0 && Integer.parseInt(desde_txt.getText()) > 0 && Integer.parseInt(hasta_txt.getText()) > 0) && (Integer.parseInt(desde_txt.getText()) < Integer.parseInt(hasta_txt.getText())) && (Integer.parseInt(hasta_txt.getText())< Integer.parseInt(cantSim_txt.getText()))) {
             this.setVisible(false);
             controller.iniciar(Integer.parseInt(cantSim_txt.getText()), Integer.parseInt(desde_txt.getText()), Integer.parseInt(hasta_txt.getText()));
         }
+        
     }//GEN-LAST:event_comenzar_btnActionPerformed
 
     /**

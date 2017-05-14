@@ -22,7 +22,6 @@ public class Controller {
     protected Controller(Main menu) {
         main = menu;
         calculator = new Calculator();
-        tablaSimulacion = new SimulacionMontecarlo();
     }
 
     public static Controller getInstance(Main menu) {
@@ -44,7 +43,13 @@ public class Controller {
     }
 
     public void iniciar(int cantSim, int desde, int hasta) {
-        calculator.tablas(tablaSimulacion, cantSim, desde, hasta);
+        tablaSimulacion = new SimulacionMontecarlo(cantSim,desde,hasta,this);
+        tablaSimulacion.setVisible(true);
+//        calculator.tablas(tablaSimulacion, cantSim, desde, hasta);
+    }
+    
+    public void showMenu(){
+        main.setVisible(true);
     }
 
 }

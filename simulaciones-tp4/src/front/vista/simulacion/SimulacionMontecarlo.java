@@ -5,19 +5,27 @@
  */
 package front.vista.simulacion;
 
+import objects.Calculator;
+import objects.Controller;
+
 /**
  *
  * @author nicolashefty
  */
 public class SimulacionMontecarlo extends javax.swing.JFrame
 {
-
+    Controller controller;
+    Calculator calculator = new Calculator();
     /**
      * Creates new form SimulacionMontecarlo
      */
-    public SimulacionMontecarlo()
+    public SimulacionMontecarlo(int cant, int desde, int hasta, Controller cont)
     {
+        controller = cont;
         initComponents();
+        calculator.tablas(this, cant, desde, hasta);
+        setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -285,6 +293,8 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
             _tblMontecarlo.getColumnModel().getColumn(10).setResizable(false);
             _tblMontecarlo.getColumnModel().getColumn(10).setPreferredWidth(80);
         }
+        _tblMontecarlo.getAccessibleContext().setAccessibleName("");
+        _tblMontecarlo.getAccessibleContext().setAccessibleDescription("");
 
         _lblTituloMontecarlo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         _lblTituloMontecarlo.setForeground(new java.awt.Color(102, 102, 102));
@@ -339,6 +349,11 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
         simulationTable.addTab("Simulacion", jPanel2);
 
         jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -364,61 +379,66 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        controller.showMenu();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        }
-        catch (ClassNotFoundException ex)
-        {
-            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (InstantiationException ex)
-        {
-            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (IllegalAccessException ex)
-        {
-            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
-            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                new SimulacionMontecarlo().setVisible(true);
-            }
-
-        });
-    }
+//    public static void main(String args[])
+//    {
+//        /*
+//         * Set the Nimbus look and feel
+//         */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /*
+//         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+//         * default look and feel. For details see
+//         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+//         */
+//        try
+//        {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+//            {
+//                if ("Nimbus".equals(info.getName()))
+//                {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        }
+//        catch (ClassNotFoundException ex)
+//        {
+//            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        catch (InstantiationException ex)
+//        {
+//            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        catch (IllegalAccessException ex)
+//        {
+//            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        catch (javax.swing.UnsupportedLookAndFeelException ex)
+//        {
+//            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /*
+//         * Create and display the form
+//         */
+//        java.awt.EventQueue.invokeLater(new Runnable()
+//        {
+//            public void run()
+//            {
+//                new SimulacionMontecarlo().setVisible(true);
+//            }
+//
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel _lbl7antes;
@@ -438,9 +458,9 @@ public class SimulacionMontecarlo extends javax.swing.JFrame
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblDespues9;
     private javax.swing.JTabbedPane simulationTable;
-    private javax.swing.JTable tblDespues7;
-    private javax.swing.JTable tblDespues8;
-    private javax.swing.JTable tblDespues9;
+    public javax.swing.JTable tblDespues7;
+    public javax.swing.JTable tblDespues8;
+    public javax.swing.JTable tblDespues9;
     public javax.swing.JTable tblPrimerTiro;
     // End of variables declaration//GEN-END:variables
 }

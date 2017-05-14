@@ -21,16 +21,24 @@ public class Calculator {
     int cantExperimentos = 1;
 
     int acumSiSupera120 = 0;
+    DefaultTableModel tm;
+    DefaultTableModel tmPrimerTiro;
+    DefaultTableModel tmSegundoTiroPara7;
+    DefaultTableModel tmSegundoTiroPara8;
+    DefaultTableModel tmSegundoTiroPara9;
+    DefaultTableModel tmSegundoTiro;
 
     public Calculator() {
 
     }
 
     public void tablas(SimulacionMontecarlo tablaSimulacion, int cantSim, int desde, int hasta) {
-        tablaSimulacion.setVisible(true);
+        seteoTablas(tablaSimulacion);
+
         for (int i = 0; i < cantSim; i++) {
             simulacion(tablaSimulacion);
         }
+        tablaSimulacion.setVisible(true);
     }
 
     public void simulacion(SimulacionMontecarlo tablaSimulacion) {
@@ -40,16 +48,15 @@ public class Calculator {
         int puntaje = 0;
         int puntosAcum = 0;
         boolean superoLos120 = false;
-        //float[][] matrizEstado = new float[2][9];
+
         //       0       1       2          3        4         5                6                  7               8                       9
         // simulacion  ronda    rnd1    1erTiro     rnd2    2doTiro     totalPinosTirados   puntosTotales   puntosAcumulados    acumuladorSiSupera120  
         for (int i = 0; i < 10; i++) {
             //nro experimento
 
-            DefaultTableModel tm = (DefaultTableModel) tablaSimulacion._tblMontecarlo.getModel();
             float rnd1 = r.nextFloat();
+            int tiro1 = calculoTiro1(rnd1);
 
-            int tiro1 = calculoTiro1(rnd1, tablaSimulacion);
             if (tiro1 == 10) {
                 puntaje = 20;
                 puntosAcum += puntaje;
@@ -62,9 +69,11 @@ public class Calculator {
                 }
                 tm.addRow(new Object[]{cantExperimentos, contador, rnd1, tiro1, "-", "-", tiro1, puntaje, puntosAcum, superoLos120, acumSiSupera120});
             } else {
+
                 float rnd2 = r.nextFloat();
                 int tiro2 = calculoTiro2(tiro1, rnd2, tablaSimulacion);
                 int cantPinosTirados = tiro1 + tiro2;
+
                 if (cantPinosTirados == 10) {
                     puntaje = 15;
                     puntosAcum += puntaje;
@@ -93,8 +102,7 @@ public class Calculator {
         cantExperimentos++;
     }
 
-    private int calculoTiro1(float rnd1, SimulacionMontecarlo tablaSimulacion) {
-        DefaultTableModel tmPrimerTiro = (DefaultTableModel) tablaSimulacion.tblPrimerTiro.getModel();
+    private int calculoTiro1(float rnd1) {
         int nPinosTirados = 0;
         for (int i = 0; i < tmPrimerTiro.getRowCount(); i++) {
             if (rnd1 < (float) tmPrimerTiro.getValueAt(i, 2)) {
@@ -107,36 +115,41 @@ public class Calculator {
 
     private int calculoTiro2(int tiro1, float rnd2, SimulacionMontecarlo tablaSimulacion) {
         int nPinosTirados = 0;
-        DefaultTableModel tmSegundoTiro;
+
         switch (tiro1) {
             case 7:
-                tmSegundoTiro = (DefaultTableModel) tablaSimulacion.tblDespues7.getModel();
-                for (int i = 0; i < tmSegundoTiro.getRowCount(); i++) {
-                    if (rnd2 < (float) tmSegundoTiro.getValueAt(i, 2)) {
-                        nPinosTirados = (int) tmSegundoTiro.getValueAt(i, 0);
+                for (int i = 0; i < tmSegundoTiroPara7.getRowCount(); i++) {
+                    if (rnd2 < (float) tmSegundoTiroPara7.getValueAt(i, 2)) {
+                        nPinosTirados = (int) tmSegundoTiroPara7.getValueAt(i, 0);
                         break;
                     }
                 }
                 break;
             case 8:
-                tmSegundoTiro = (DefaultTableModel) tablaSimulacion.tblDespues8.getModel();
-                for (int i = 0; i < tmSegundoTiro.getRowCount(); i++) {
-                    if (rnd2 < (float) tmSegundoTiro.getValueAt(i, 2)) {
-                        nPinosTirados = (int) tmSegundoTiro.getValueAt(i, 0);
+                for (int i = 0; i < tmSegundoTiroPara8.getRowCount(); i++) {
+                    if (rnd2 < (float) tmSegundoTiroPara8.getValueAt(i, 2)) {
+                        nPinosTirados = (int) tmSegundoTiroPara8.getValueAt(i, 0);
                         break;
                     }
                 }
                 break;
             case 9:
-                tmSegundoTiro = (DefaultTableModel) tablaSimulacion.tblDespues9.getModel();
-                for (int i = 0; i < tmSegundoTiro.getRowCount(); i++) {
-                    if (rnd2 < (float) tmSegundoTiro.getValueAt(i, 2)) {
-                        nPinosTirados = (int) tmSegundoTiro.getValueAt(i, 0);
+                for (int i = 0; i < tmSegundoTiroPara9.getRowCount(); i++) {
+                    if (rnd2 < (float) tmSegundoTiroPara9.getValueAt(i, 2)) {
+                        nPinosTirados = (int) tmSegundoTiroPara9.getValueAt(i, 0);
                         break;
                     }
                 }
                 break;
         }
         return nPinosTirados;
+    }
+
+    private void seteoTablas(SimulacionMontecarlo tablaSimulacion) {
+        tm = (DefaultTableModel) tablaSimulacion._tblMontecarlo.getModel();
+        tmPrimerTiro = (DefaultTableModel) tablaSimulacion.tblPrimerTiro.getModel();
+        tmSegundoTiroPara7 = (DefaultTableModel) tablaSimulacion.tblDespues7.getModel();
+        tmSegundoTiroPara8 = (DefaultTableModel) tablaSimulacion.tblDespues8.getModel();
+        tmSegundoTiroPara9 = (DefaultTableModel) tablaSimulacion.tblDespues9.getModel();
     }
 }

@@ -6,6 +6,7 @@
 package objects;
 
 import front.Main;
+import front.Default;
 import front.vista.simulacion.SimulacionMontecarlo;
 
 /**
@@ -15,12 +16,14 @@ import front.vista.simulacion.SimulacionMontecarlo;
 public class Controller {
 
     private static Controller controller;
-    static Main main;
+    static Main inicio;
+    static Default defaul;
     static Calculator calculator;
     private SimulacionMontecarlo tablaSimulacion;
 
     protected Controller(Main menu) {
-        main = menu;
+        inicio = menu;
+        defaul = new Default(this);
         calculator = new Calculator();
     }
 
@@ -34,12 +37,12 @@ public class Controller {
         return controller;
     }
 
-    public void setMain(Main menu) {
-        main = menu;
+    public void setMain(Main in) {
+        inicio = in;
     }
 
-    public Main getMain() {
-        return main;
+    public Main getInicio() {
+        return inicio;
     }
 
     public void iniciar(int cantSim, int desde, int hasta) {
@@ -48,8 +51,21 @@ public class Controller {
 //        calculator.tablas(tablaSimulacion, cantSim, desde, hasta);
     }
     
+    public void selectedDefault(){
+        inicio.setVisible(false);
+        this.defaul.setVisible(true);
+    }
+    
+    public void selectedSet(){
+        
+    }
+    
+    public void showDefault(){
+        defaul.setVisible(true);
+    }
+    
     public void showMenu(){
-        main.setVisible(true);
+        inicio.setVisible(true);
     }
 
 }

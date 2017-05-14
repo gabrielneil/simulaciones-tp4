@@ -36,12 +36,12 @@ public class Calculator {
         seteoTablas(tablaSimulacion);
 
         for (int i = 0; i < cantSim; i++) {
-            simulacion(tablaSimulacion);
+            simulacion();
         }
         tablaSimulacion.setVisible(true);
     }
 
-    public void simulacion(SimulacionMontecarlo tablaSimulacion) {
+    public void simulacion() {
         Random r = new Random();
         int contador = 1;
         DecimalFormat aleat = new DecimalFormat("0.00");
@@ -71,12 +71,13 @@ public class Calculator {
             } else {
 
                 float rnd2 = r.nextFloat();
-                int tiro2 = calculoTiro2(tiro1, rnd2, tablaSimulacion);
+                int tiro2 = calculoTiro2(tiro1, rnd2);
                 int cantPinosTirados = tiro1 + tiro2;
 
                 if (cantPinosTirados == 10) {
                     puntaje = 15;
                     puntosAcum += puntaje;
+                    
                     if (puntosAcum >= 120) {
                         superoLos120 = true;
                         acumSiSupera120++;
@@ -113,7 +114,7 @@ public class Calculator {
         return nPinosTirados;
     }
 
-    private int calculoTiro2(int tiro1, float rnd2, SimulacionMontecarlo tablaSimulacion) {
+    private int calculoTiro2(int tiro1, float rnd2) {
         int nPinosTirados = 0;
 
         switch (tiro1) {

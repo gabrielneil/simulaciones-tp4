@@ -60,14 +60,8 @@ public class Calculator {
             if (tiro1 == 10) {
                 puntaje = 20;
                 puntosAcum += puntaje;
-
-                if (puntosAcum >= 120) {
-                    superoLos120 = true;
-                    acumSiSupera120++;
-                    tm.addRow(new Object[]{cantExperimentos, contador, rnd1, tiro1, "-", "-", tiro1, puntaje, puntosAcum, superoLos120, acumSiSupera120});
-                    break;
-                }
-                tm.addRow(new Object[]{cantExperimentos, contador, rnd1, tiro1, "-", "-", tiro1, puntaje, puntosAcum, superoLos120, acumSiSupera120});
+                tm.addRow(new Object[]{cantExperimentos, contador, rnd1, tiro1, "-", "-", tiro1, puntaje, puntosAcum, (puntosAcum >= 120)?true:false, acumSiSupera120});
+            //ver que onda con el puntaje
             } else {
 
                 float rnd2 = r.nextFloat();
@@ -100,7 +94,10 @@ public class Calculator {
 
             contador++;
         }
-        cantExperimentos++;
+      //Me falta consultar si la ultima fila tiene un true y le aumento el contador
+      //acumSiSupera120++;
+        
+      cantExperimentos++;
     }
 
     private int calculoTiro1(float rnd1) {

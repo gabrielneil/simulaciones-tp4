@@ -8,7 +8,6 @@ package objects;
 import front.vista.simulacion.SimulacionMontecarlo;
 import java.text.DecimalFormat;
 import java.util.Random;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,7 +35,7 @@ public class Calculator {
         seteoTablas(tablaSimulacion);
 
         for (int i = 0; i < cantSim; i++) {
-            if (cantExperimentos >= desde && cantExperimentos <= hasta) {
+            if ((cantExperimentos >= desde && cantExperimentos <= hasta) || i == cantSim - 1) {
                 simulacionEnGrafico();
             } else {
                 simulacion();
@@ -60,7 +59,7 @@ public class Calculator {
                 puntaje = 20;
                 puntosAcum += puntaje;
             } else {
-                
+
                 float rnd2 = r.nextFloat();
                 int tiro2 = calculoTiro2(tiro1, rnd2);
                 int cantPinosTirados = tiro1 + tiro2;

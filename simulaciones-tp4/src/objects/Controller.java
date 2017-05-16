@@ -9,6 +9,7 @@ import front.Main;
 import front.Default;
 import front.Edition;
 import front.vista.simulacion.SimulacionMontecarlo;
+import front.vista.simulacion.SimulacionMontecarloSetear;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Controller {
     static Default defaul;
     static Calculator calculator;
     private SimulacionMontecarlo tablaSimulacion;
+    private SimulacionMontecarloSetear tablaSimulacionSet;
     static Edition edition;
     
     protected Controller(Main menu) {
@@ -28,6 +30,7 @@ public class Controller {
         defaul = new Default(this);
         calculator = new Calculator();
         edition = new Edition();
+        tablaSimulacionSet = new SimulacionMontecarloSetear(this);
     }
     
     public static Controller getInstance(Main menu) {
@@ -65,7 +68,7 @@ public class Controller {
     }
     
     public void selectedSet() {
-        
+        this.tablaSimulacionSet.setVisible(true);
     }
     
     public void showDefault() {

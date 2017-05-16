@@ -5,6 +5,9 @@
  */
 package front.vista.simulacion;
 
+import javax.swing.table.DefaultTableModel;
+import objects.Controller;
+
 /**
  *
  * @author federico
@@ -14,7 +17,9 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     /**
      * Creates new form SimulacionMontecarloSetear
      */
-    public SimulacionMontecarloSetear() {
+    Controller controller;
+    public SimulacionMontecarloSetear(Controller cont) {
+        controller = cont;
         initComponents();
     }
 
@@ -45,6 +50,21 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         _scpMontecarlo = new javax.swing.JScrollPane();
         _tblMontecarlo = new javax.swing.JTable();
         _lblTituloMontecarlo = new javax.swing.JLabel();
+        _btnSimular = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        _txt10PrimerTiro = new javax.swing.JTextField();
+        _txt10SegundoTiro = new javax.swing.JTextField();
+        _txtRondas = new javax.swing.JTextField();
+        _txtCantSim = new javax.swing.JTextField();
+        _txtDesde = new javax.swing.JTextField();
+        _txtHasta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,14 +73,17 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
 
         tblPrimerTiro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"7", null, null},
+                {"8", null, null},
+                {"9", null, null},
+                {"10", null, null}
             },
             new String [] {
-                "# Pinos", "Probabilidad", "P. Acumulada", "Desde", "Hasta"
+                "# Pinos", "Probabilidad", "P. Acumulada"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -71,14 +94,17 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
 
         tblDespues8.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"0", null, null},
+                {"1", null, null},
+                {"2", null, null},
+                {"3", null, null}
             },
             new String [] {
-                "# Pinos", "Probabilidad", "P. Acumulada", "Desde", "Hasta"
+                "# Pinos", "Probabilidad", "P. Acumulada"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -89,14 +115,15 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
 
         tblDespues9.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"0", null, null},
+                {"1", null, null}
             },
             new String [] {
-                "# Pinos", "Probabilidad", "P. Acumulada", "Desde", "Hasta"
+                "# Pinos", "Probabilidad", "P. Acumulada"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -104,18 +131,28 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(tblDespues9);
+        if (tblDespues9.getColumnModel().getColumnCount() > 0) {
+            tblDespues9.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         tblDespues7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"0", null, null},
+                {"1", null, null},
+                {"2", null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "# Pinos", "Probabilidad", "P. Acumulada"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(tblDespues7);
 
         _lblPrimerTiro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -250,69 +287,169 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Simulacion", jPanel2);
 
+        _btnSimular.setText("Comenzar simulacion");
+        _btnSimular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                _btnSimularActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Setear valores");
+
+        jButton2.setText("Volver");
+
+        jLabel1.setText("Puntaje de 10 pinos en el primer tiro");
+
+        jLabel2.setText("Puntaje de 10 pinos en el segundo tiro");
+
+        jLabel3.setText("Cantidad de rondas a simular");
+
+        jLabel4.setText("Desde");
+
+        jLabel5.setText("Hasta");
+
+        jLabel6.setText("Cantidad de simulaciones");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(_txtRondas, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(_txt10SegundoTiro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(_txt10PrimerTiro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(_btnSimular))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(135, 135, 135)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(_txtHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(_txtCantSim, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(_txtDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(_txtCantSim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(_txtDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(_txtHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(_btnSimular)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(_txt10PrimerTiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(_txt10SegundoTiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(_txtRondas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void _btnSimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__btnSimularActionPerformed
+        
+        float probAc = 0;
+        for (int i = 0; i < tblPrimerTiro.getRowCount(); i++) {
+            probAc += Float.parseFloat((String)tblPrimerTiro.getValueAt(i, 1));
+            tblPrimerTiro.setValueAt(probAc, i, 2);
+        }
+        probAc = 0;
+        for (int i = 0; i < tblDespues7.getRowCount(); i++) {
+            probAc += Float.parseFloat((String)tblDespues7.getValueAt(i, 1));
+            tblDespues7.setValueAt((float)probAc, i, 2);
+        }
+        
+        probAc = 0;
+        for (int i = 0; i < tblDespues8.getRowCount(); i++) {
+            probAc += Float.parseFloat((String)tblDespues8.getValueAt(i, 1));
+            tblDespues8.setValueAt((float)probAc, i, 2);
+        }
+        
+        probAc = 0;
+        for (int i = 0; i < tblDespues9.getRowCount(); i++) {
+            probAc += Float.parseFloat((String)tblDespues9.getValueAt(i, 1));
+            tblDespues9.setValueAt((float)probAc, i, 2);
+        }
+    }//GEN-LAST:event__btnSimularActionPerformed
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SimulacionMontecarloSetear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SimulacionMontecarloSetear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SimulacionMontecarloSetear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SimulacionMontecarloSetear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SimulacionMontecarloSetear().setVisible(true);
-                
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton _btnSimular;
     private javax.swing.JLabel _lbl7antes;
     private javax.swing.JLabel _lblDespues8;
     private javax.swing.JLabel _lblPrimerTiro;
     private javax.swing.JLabel _lblTituloMontecarlo;
     private javax.swing.JScrollPane _scpMontecarlo;
     public javax.swing.JTable _tblMontecarlo;
+    private javax.swing.JTextField _txt10PrimerTiro;
+    private javax.swing.JTextField _txt10SegundoTiro;
+    private javax.swing.JTextField _txtCantSim;
+    private javax.swing.JTextField _txtDesde;
+    private javax.swing.JTextField _txtHasta;
+    private javax.swing.JTextField _txtRondas;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

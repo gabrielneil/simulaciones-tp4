@@ -9,13 +9,21 @@ package front;
  *
  * @author gabrielneil
  */
+import objects.Controller;
+
 public class Edition extends javax.swing.JFrame {
 
     /**
      * Creates new form Edition
      */
+    Controller cont;
+
     public Edition() {
         initComponents();
+    }
+
+    public void setController(Controller cont) {
+        this.cont = cont;
     }
 
     /**
@@ -57,6 +65,11 @@ public class Edition extends javax.swing.JFrame {
         jTextField4.setText("120");
 
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Comenzar");
 
@@ -114,6 +127,12 @@ public class Edition extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        cont.showDefault();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

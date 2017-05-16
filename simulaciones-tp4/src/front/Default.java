@@ -66,6 +66,11 @@ public class Default extends javax.swing.JFrame {
         });
 
         jButton1.setText("Modificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,13 +138,17 @@ public class Default extends javax.swing.JFrame {
 
     private void comenzar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comenzar_btnActionPerformed
         this.setVisible(false);
-        controller.iniciar(Integer.parseInt(cantSim_txt.getText()), Integer.parseInt(desde_txt.getText()), Integer.parseInt(hasta_txt.getText()));
-//        if ((cantSim_txt.getText() != "" && desde_txt.getText() != "" && hasta_txt.getText() != "") && (Integer.parseInt(cantSim_txt.getText()) > 0 && Integer.parseInt(desde_txt.getText()) > 0 && Integer.parseInt(hasta_txt.getText()) > 0) && (Integer.parseInt(desde_txt.getText()) < Integer.parseInt(hasta_txt.getText())) && (Integer.parseInt(hasta_txt.getText())< Integer.parseInt(cantSim_txt.getText()))) {
-//            this.setVisible(false);
-//            controller.iniciar(Integer.parseInt(cantSim_txt.getText()), Integer.parseInt(desde_txt.getText()), Integer.parseInt(hasta_txt.getText()));
-//        }
-        
+        if ((cantSim_txt.getText() != "" && desde_txt.getText() != "" && hasta_txt.getText() != "") && (Integer.parseInt(cantSim_txt.getText()) > 0 && Integer.parseInt(desde_txt.getText()) > 0 && Integer.parseInt(hasta_txt.getText()) > 0) && (Integer.parseInt(desde_txt.getText()) < Integer.parseInt(hasta_txt.getText())) && (Integer.parseInt(hasta_txt.getText())< Integer.parseInt(cantSim_txt.getText()))) {
+            this.setVisible(false);
+            controller.iniciar(Integer.parseInt(cantSim_txt.getText()), Integer.parseInt(desde_txt.getText()), Integer.parseInt(hasta_txt.getText()));
+        }
     }//GEN-LAST:event_comenzar_btnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        controller.showEdition();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

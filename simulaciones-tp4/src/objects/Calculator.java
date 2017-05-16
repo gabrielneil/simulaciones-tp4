@@ -48,7 +48,7 @@ public class Calculator {
         Random r = new Random();
         int puntaje;
         int puntosAcum = 0;
-
+        boolean flag = false;
         //       0       1       2          3        4         5                6                  7               8                       9            10
         // simulacion  ronda    rnd1    1erTiro     rnd2    2doTiro     totalPinosTirados   puntosTotales   puntosAcumulados    booleano superoLos120   acumuladorSiSupera120  
         for (int i = 0; i < 10; i++) {
@@ -58,6 +58,10 @@ public class Calculator {
             if (tiro1 == 10) {
                 puntaje = 20;
                 puntosAcum += puntaje;
+                if (puntosAcum >= 120 && flag == false) {
+                    acumSiSupera120++;
+                    flag = true;
+                }
             } else {
 
                 float rnd2 = r.nextFloat();
@@ -65,11 +69,12 @@ public class Calculator {
                 int cantPinosTirados = tiro1 + tiro2;
                 puntaje = (cantPinosTirados == 10) ? 15 : cantPinosTirados;
                 puntosAcum += puntaje;
+                if (puntosAcum >= 120 && flag == false) {
+                    acumSiSupera120++;
+                    flag = true;
+                }
             }
 
-        }
-        if (puntosAcum >= 120) {
-            acumSiSupera120++;
         }
         cantExperimentos++;
     }
@@ -80,7 +85,7 @@ public class Calculator {
         DecimalFormat aleat = new DecimalFormat("0.00");
         int puntaje;
         int puntosAcum = 0;
-
+        boolean flag = false;
         //       0       1       2          3        4         5                6                  7               8                       9            10
         // simulacion  ronda    rnd1    1erTiro     rnd2    2doTiro     totalPinosTirados   puntosTotales   puntosAcumulados    booleano superoLos120   acumuladorSiSupera120  
         for (int i = 0; i < 10; i++) {
@@ -92,6 +97,10 @@ public class Calculator {
                 puntaje = 20;
                 puntosAcum += puntaje;
                 tm.addRow(new Object[]{cantExperimentos, contador, rnd1, tiro1, "-", "-", tiro1, puntaje, puntosAcum, (puntosAcum >= 120) ? true : false, acumSiSupera120});
+                 if (puntosAcum >= 120 && flag == false) {
+                    acumSiSupera120++;
+                    flag = true;
+                }
             } else {
 
                 float rnd2 = r.nextFloat();
@@ -100,12 +109,13 @@ public class Calculator {
                 puntaje = (cantPinosTirados == 10) ? 15 : cantPinosTirados;
                 puntosAcum += puntaje;
                 tm.addRow(new Object[]{cantExperimentos, contador, rnd1, tiro1, rnd2, tiro2, cantPinosTirados, puntaje, puntosAcum, (puntosAcum >= 120) ? true : false, acumSiSupera120});
+                if (puntosAcum >= 120 && flag == false) {
+                    acumSiSupera120++;
+                    flag = true;
+                }
             }
 
             contador++;
-        }
-        if (puntosAcum >= 120) {
-            acumSiSupera120++;
         }
         cantExperimentos++;
     }
@@ -159,5 +169,9 @@ public class Calculator {
         tmSegundoTiroPara7 = (DefaultTableModel) tablaSimulacion.tblDespues7.getModel();
         tmSegundoTiroPara8 = (DefaultTableModel) tablaSimulacion.tblDespues8.getModel();
         tmSegundoTiroPara9 = (DefaultTableModel) tablaSimulacion.tblDespues9.getModel();
+    }
+
+    public int cantidadExperimentos() {
+        return acumSiSupera120;
     }
 }

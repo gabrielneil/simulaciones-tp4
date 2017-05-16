@@ -25,7 +25,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
         initComponents();
         calculator.tablas(this, cant, desde, hasta);
         setLocationRelativeTo(null);
-
+        resultado_txt.setText(Double.toString((double)calculator.cantidadExperimentos()/(double)cant));
     }
 
     public SimulacionMontecarlo(int cant, int desde, int hasta, Controller cont, int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
@@ -64,6 +64,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
         _tblMontecarlo = new javax.swing.JTable();
         _lblTituloMontecarlo = new javax.swing.JLabel();
         _pnlResultadosMontecarlo = new javax.swing.JPanel();
+        resultado_txt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -308,15 +309,23 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
         _lblTituloMontecarlo.setForeground(new java.awt.Color(102, 102, 102));
         _lblTituloMontecarlo.setText("Vector Estado - Montecarlo");
 
+        resultado_txt.setText("jTextField1");
+
         javax.swing.GroupLayout _pnlResultadosMontecarloLayout = new javax.swing.GroupLayout(_pnlResultadosMontecarlo);
         _pnlResultadosMontecarlo.setLayout(_pnlResultadosMontecarloLayout);
         _pnlResultadosMontecarloLayout.setHorizontalGroup(
             _pnlResultadosMontecarloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 191, Short.MAX_VALUE)
+            .addGroup(_pnlResultadosMontecarloLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(resultado_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         _pnlResultadosMontecarloLayout.setVerticalGroup(
             _pnlResultadosMontecarloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(_pnlResultadosMontecarloLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(resultado_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -335,7 +344,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
                 .addGap(91, 91, 91))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(_scpMontecarlo, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE)
+                .addComponent(_scpMontecarlo, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(_pnlResultadosMontecarlo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -350,7 +359,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(_pnlResultadosMontecarlo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(_scpMontecarlo, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
+                    .addComponent(_scpMontecarlo, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
         );
 
@@ -465,6 +474,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblDespues9;
+    private javax.swing.JTextField resultado_txt;
     private javax.swing.JTabbedPane simulationTable;
     public javax.swing.JTable tblDespues7;
     public javax.swing.JTable tblDespues8;

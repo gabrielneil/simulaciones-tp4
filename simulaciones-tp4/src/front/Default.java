@@ -17,6 +17,7 @@ public class Default extends javax.swing.JFrame {
      * Creates new form Default
      */
     Controller controller;
+    int cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar;
 
     public Default(Controller cont) {
         controller = cont;
@@ -138,7 +139,7 @@ public class Default extends javax.swing.JFrame {
 
     private void comenzar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comenzar_btnActionPerformed
         this.setVisible(false);
-        if ((cantSim_txt.getText() != "" && desde_txt.getText() != "" && hasta_txt.getText() != "") && (Integer.parseInt(cantSim_txt.getText()) > 0 && Integer.parseInt(desde_txt.getText()) > 0 && Integer.parseInt(hasta_txt.getText()) > 0) && (Integer.parseInt(desde_txt.getText()) < Integer.parseInt(hasta_txt.getText())) && (Integer.parseInt(hasta_txt.getText())< Integer.parseInt(cantSim_txt.getText()))) {
+        if ((cantSim_txt.getText() != "" && desde_txt.getText() != "" && hasta_txt.getText() != "") && (Integer.parseInt(cantSim_txt.getText()) > 0 && Integer.parseInt(desde_txt.getText()) > 0 && Integer.parseInt(hasta_txt.getText()) > 0) && (Integer.parseInt(desde_txt.getText()) < Integer.parseInt(hasta_txt.getText())) && (Integer.parseInt(hasta_txt.getText()) < Integer.parseInt(cantSim_txt.getText()))) {
             this.setVisible(false);
             controller.iniciar(Integer.parseInt(cantSim_txt.getText()), Integer.parseInt(desde_txt.getText()), Integer.parseInt(hasta_txt.getText()));
         }
@@ -153,7 +154,6 @@ public class Default extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cantSim_txt;
@@ -166,4 +166,11 @@ public class Default extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton salir_btn;
     // End of variables declaration//GEN-END:variables
+
+    public void setValoresEspecificos(int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
+        this.cantRondas = cantRondas;
+        this.puntosPrimerTiro = puntosPrimerTiro;
+        this.puntosSegundoTiro = puntosSegundoTiro;
+        this.valorASuperar = valorASuperar;
+    }
 }

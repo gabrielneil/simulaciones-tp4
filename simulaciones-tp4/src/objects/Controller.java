@@ -53,6 +53,12 @@ public class Controller {
         tablaSimulacion.setVisible(true);
     }
     
+    
+    public void iniciarEspecífico(int cantSim, int desde, int hasta, int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
+        tablaSimulacion = new SimulacionMontecarlo(cantSim, desde, hasta, this);
+        tablaSimulacion.setVisible(true);
+    }
+    
     public void selectedDefault() {
         inicio.setVisible(false);
         this.defaul.setVisible(true);
@@ -76,6 +82,9 @@ public class Controller {
     }
 
     public void setValoresEspecificos(int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
+        defaul.setVisible(true);
+        tablaSimulacion = new SimulacionMontecarlo(cantSim, desde, hasta, this);
+        iniciarEspecífico();
     }
     
 }

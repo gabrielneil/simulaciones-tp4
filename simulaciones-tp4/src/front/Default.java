@@ -17,7 +17,7 @@ public class Default extends javax.swing.JFrame {
      * Creates new form Default
      */
     Controller controller;
-    int cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar;
+    int cantRondas = 0, puntosPrimerTiro, puntosSegundoTiro, valorASuperar;
 
     public Default(Controller cont) {
         controller = cont;
@@ -141,7 +141,11 @@ public class Default extends javax.swing.JFrame {
         this.setVisible(false);
         if ((cantSim_txt.getText() != "" && desde_txt.getText() != "" && hasta_txt.getText() != "") && (Integer.parseInt(cantSim_txt.getText()) > 0 && Integer.parseInt(desde_txt.getText()) > 0 && Integer.parseInt(hasta_txt.getText()) > 0) && (Integer.parseInt(desde_txt.getText()) < Integer.parseInt(hasta_txt.getText())) && (Integer.parseInt(hasta_txt.getText()) < Integer.parseInt(cantSim_txt.getText()))) {
             this.setVisible(false);
-            controller.iniciar(Integer.parseInt(cantSim_txt.getText()), Integer.parseInt(desde_txt.getText()), Integer.parseInt(hasta_txt.getText()));
+            if (cantRondas == 0) {
+                controller.iniciar(Integer.parseInt(cantSim_txt.getText()), Integer.parseInt(desde_txt.getText()), Integer.parseInt(hasta_txt.getText()));
+            } else {
+                controller.iniciarEspecífico(Integer.parseInt(cantSim_txt.getText()), Integer.parseInt(desde_txt.getText()), Integer.parseInt(hasta_txt.getText()), cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);
+            }
         }
     }//GEN-LAST:event_comenzar_btnActionPerformed
 

@@ -12,20 +12,28 @@ import objects.Controller;
  *
  * @author nicolashefty
  */
-public class SimulacionMontecarlo extends javax.swing.JFrame
-{
+public class SimulacionMontecarlo extends javax.swing.JFrame {
+
     Controller controller;
     Calculator calculator = new Calculator();
+
     /**
      * Creates new form SimulacionMontecarlo
      */
-    public SimulacionMontecarlo(int cant, int desde, int hasta, Controller cont)
-    {
+    public SimulacionMontecarlo(int cant, int desde, int hasta, Controller cont) {
         controller = cont;
         initComponents();
         calculator.tablas(this, cant, desde, hasta);
         setLocationRelativeTo(null);
-        
+
+    }
+
+    public SimulacionMontecarlo(int cant, int desde, int hasta, Controller cont, int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
+        controller = cont;
+        initComponents();
+        calculator.tablas(this, cant, desde, hasta);
+        setLocationRelativeTo(null);
+
     }
 
     /**

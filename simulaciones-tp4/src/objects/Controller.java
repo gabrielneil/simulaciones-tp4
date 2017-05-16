@@ -51,7 +51,6 @@ public class Controller {
     public void iniciar(int cantSim, int desde, int hasta) {
         tablaSimulacion = new SimulacionMontecarlo(cantSim, desde, hasta, this);
         tablaSimulacion.setVisible(true);
-//        calculator.tablas(tablaSimulacion, cantSim, desde, hasta);
     }
     
     public void selectedDefault() {
@@ -74,6 +73,9 @@ public class Controller {
     public void showEdition() {
         edition.setController(controller);
         edition.setVisible(true);
+    }
+
+    public void setValoresEspecificos(int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
     }
     
 }

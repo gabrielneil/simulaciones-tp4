@@ -25,15 +25,15 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
         initComponents();
         calculator.tablas(this, cant, desde, hasta);
         setLocationRelativeTo(null);
-        resultado_txt.setText(Double.toString((double)calculator.cantidadExperimentos()/(double)cant));
+        resultado_txt.setText(Double.toString((double)calculator.cantidadExperimentosValidos()/(double)cant));
     }
 
     public SimulacionMontecarlo(int cant, int desde, int hasta, Controller cont, int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
         controller = cont;
         initComponents();
-        calculator.tablas(this, cant, desde, hasta);
+        calculator.tablas(this, cant, desde, hasta, cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);
         setLocationRelativeTo(null);
-
+        resultado_txt.setText(Double.toString((double)calculator.cantidadExperimentosValidos()/(double)cant));
     }
 
     /**
@@ -65,6 +65,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
         _lblTituloMontecarlo = new javax.swing.JLabel();
         _pnlResultadosMontecarlo = new javax.swing.JPanel();
         resultado_txt = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -311,19 +312,27 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
 
         resultado_txt.setText("jTextField1");
 
+        jLabel2.setText("La probabilidad de que supere es:");
+
         javax.swing.GroupLayout _pnlResultadosMontecarloLayout = new javax.swing.GroupLayout(_pnlResultadosMontecarlo);
         _pnlResultadosMontecarlo.setLayout(_pnlResultadosMontecarloLayout);
         _pnlResultadosMontecarloLayout.setHorizontalGroup(
             _pnlResultadosMontecarloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(_pnlResultadosMontecarloLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(69, 69, 69)
                 .addComponent(resultado_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(_pnlResultadosMontecarloLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addContainerGap())
         );
         _pnlResultadosMontecarloLayout.setVerticalGroup(
             _pnlResultadosMontecarloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(_pnlResultadosMontecarloLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(resultado_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -344,7 +353,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
                 .addGap(91, 91, 91))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(_scpMontecarlo, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
+                .addComponent(_scpMontecarlo, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(_pnlResultadosMontecarlo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -401,62 +410,6 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
         controller.showDefault();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[])
-//    {
-//        /*
-//         * Set the Nimbus look and feel
-//         */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /*
-//         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-//         * default look and feel. For details see
-//         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-//         */
-//        try
-//        {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-//            {
-//                if ("Nimbus".equals(info.getName()))
-//                {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        }
-//        catch (ClassNotFoundException ex)
-//        {
-//            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        catch (InstantiationException ex)
-//        {
-//            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        catch (IllegalAccessException ex)
-//        {
-//            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        catch (javax.swing.UnsupportedLookAndFeelException ex)
-//        {
-//            java.util.logging.Logger.getLogger(SimulacionMontecarlo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /*
-//         * Create and display the form
-//         */
-//        java.awt.EventQueue.invokeLater(new Runnable()
-//        {
-//            public void run()
-//            {
-//                new SimulacionMontecarlo().setVisible(true);
-//            }
-//
-//        });
-//    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel _lbl7antes;
     private javax.swing.JLabel _lblDespues8;
@@ -471,6 +424,7 @@ public class SimulacionMontecarlo extends javax.swing.JFrame {
     public javax.swing.JTable _tblMontecarlo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblDespues9;

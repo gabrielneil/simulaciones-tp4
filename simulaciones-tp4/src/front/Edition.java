@@ -17,11 +17,11 @@ public class Edition extends javax.swing.JFrame {
      * Creates new form Edition
      */
     Controller cont;
-
+    
     public Edition() {
         initComponents();
     }
-
+    
     public void setController(Controller cont) {
         this.cont = cont;
     }
@@ -146,7 +146,8 @@ public class Edition extends javax.swing.JFrame {
 
     private void comenzar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comenzar_btnActionPerformed
         // TODO add your handling code here:
-       cont.setValoresEspecificos(Integer.parseInt(cantRondas_txt.getText()),Integer.parseInt(puntosPrimerTiro_txt.getText()),Integer.parseInt(puntosSegundoTiro_txt.getText()),Integer.parseInt(valorAsuperar_txt.getText()));
+        this.setVisible(false);
+        cont.setValoresEspecificos(Integer.parseInt(cantRondas_txt.getText()), Integer.parseInt(puntosPrimerTiro_txt.getText()), Integer.parseInt(puntosSegundoTiro_txt.getText()), Integer.parseInt(valorAsuperar_txt.getText()));
         
     }//GEN-LAST:event_comenzar_btnActionPerformed
 

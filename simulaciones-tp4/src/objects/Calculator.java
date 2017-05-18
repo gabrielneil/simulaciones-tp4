@@ -19,7 +19,7 @@ public class Calculator {
 //cantidad de simulaciones realizadas 
     int cantExperimentos = 1;
 
-    int acumSiSupera120 = 0;
+    int acumSiSuperaLimite = 0;
     DefaultTableModel tm;
     DefaultTableModel tmPrimerTiro;
     DefaultTableModel tmSegundoTiroPara7;
@@ -36,30 +36,44 @@ public class Calculator {
 
         for (int i = 0; i < cantSim; i++) {
             if ((cantExperimentos >= desde && cantExperimentos <= hasta) || i == cantSim - 1) {
-                simulacionEnGrafico();
+                simulacionEnGrafico(10, 20, 15, 120);
             } else {
-                simulacion();
+                simulacion(10, 20, 15, 120);
             }
         }
         tablaSimulacion.setVisible(true);
     }
 
-    public void simulacion() {
+    public void tablas(SimulacionMontecarlo tablaSimulacion, int cantSim, int desde, int hasta, int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
+        seteoTablas(tablaSimulacion);
+
+        for (int i = 0; i < cantSim; i++) {
+            if ((cantExperimentos >= desde && cantExperimentos <= hasta) || i == cantSim - 1) {
+                simulacionEnGrafico(cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);
+            } else {
+                simulacion(cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);
+            }
+        }
+        tablaSimulacion.setVisible(true);
+    }
+
+    public void simulacion(int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
         Random r = new Random();
         int puntaje;
         int puntosAcum = 0;
         boolean flag = false;
+
         //       0       1       2          3        4         5                6                  7               8                       9            10
         // simulacion  ronda    rnd1    1erTiro     rnd2    2doTiro     totalPinosTirados   puntosTotales   puntosAcumulados    booleano superoLos120   acumuladorSiSupera120  
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < cantRondas; i++) {
             float rnd1 = r.nextFloat();
             int tiro1 = calculoTiro1(rnd1);
 
             if (tiro1 == 10) {
-                puntaje = 20;
+                puntaje = puntosPrimerTiro;
                 puntosAcum += puntaje;
-                if (puntosAcum >= 120 && flag == false) {
-                    acumSiSupera120++;
+                if (puntosAcum >= valorASuperar && flag == false) {
+                    acumSiSuperaLimite++;
                     flag = true;
                 }
             } else {
@@ -67,10 +81,10 @@ public class Calculator {
                 float rnd2 = r.nextFloat();
                 int tiro2 = calculoTiro2(tiro1, rnd2);
                 int cantPinosTirados = tiro1 + tiro2;
-                puntaje = (cantPinosTirados == 10) ? 15 : cantPinosTirados;
+                puntaje = (cantPinosTirados == 10) ? puntosSegundoTiro : cantPinosTirados;
                 puntosAcum += puntaje;
-                if (puntosAcum >= 120 && flag == false) {
-                    acumSiSupera120++;
+                if (puntosAcum >= valorASuperar && flag == false) {
+                    acumSiSuperaLimite++;
                     flag = true;
                 }
             }
@@ -79,26 +93,26 @@ public class Calculator {
         cantExperimentos++;
     }
 
-    public void simulacionEnGrafico() {
+    public void simulacionEnGrafico(int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
         Random r = new Random();
         int contador = 1;
-        DecimalFormat aleat = new DecimalFormat("0.00");
         int puntaje;
         int puntosAcum = 0;
         boolean flag = false;
+        
         //       0       1       2          3        4         5                6                  7               8                       9            10
         // simulacion  ronda    rnd1    1erTiro     rnd2    2doTiro     totalPinosTirados   puntosTotales   puntosAcumulados    booleano superoLos120   acumuladorSiSupera120  
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < cantRondas; i++) {
 
             float rnd1 = r.nextFloat();
             int tiro1 = calculoTiro1(rnd1);
 
             if (tiro1 == 10) {
-                puntaje = 20;
+                puntaje = puntosPrimerTiro;
                 puntosAcum += puntaje;
-                tm.addRow(new Object[]{cantExperimentos, contador, rnd1, tiro1, "-", "-", tiro1, puntaje, puntosAcum, (puntosAcum >= 120) ? true : false, acumSiSupera120});
-                 if (puntosAcum >= 120 && flag == false) {
-                    acumSiSupera120++;
+                tm.addRow(new Object[]{cantExperimentos, contador, rnd1, tiro1, "-", "-", tiro1, puntaje, puntosAcum, (puntosAcum >= valorASuperar) ? true : false, acumSiSuperaLimite});
+                if (puntosAcum >= valorASuperar && flag == false) {
+                    acumSiSuperaLimite++;
                     flag = true;
                 }
             } else {
@@ -106,11 +120,11 @@ public class Calculator {
                 float rnd2 = r.nextFloat();
                 int tiro2 = calculoTiro2(tiro1, rnd2);
                 int cantPinosTirados = tiro1 + tiro2;
-                puntaje = (cantPinosTirados == 10) ? 15 : cantPinosTirados;
+                puntaje = (cantPinosTirados == 10) ? puntosSegundoTiro : cantPinosTirados;
                 puntosAcum += puntaje;
-                tm.addRow(new Object[]{cantExperimentos, contador, rnd1, tiro1, rnd2, tiro2, cantPinosTirados, puntaje, puntosAcum, (puntosAcum >= 120) ? true : false, acumSiSupera120});
-                if (puntosAcum >= 120 && flag == false) {
-                    acumSiSupera120++;
+                tm.addRow(new Object[]{cantExperimentos, contador, rnd1, tiro1, rnd2, tiro2, cantPinosTirados, puntaje, puntosAcum, (puntosAcum >= valorASuperar) ? true : false, acumSiSuperaLimite});
+                if (puntosAcum >= valorASuperar && flag == false) {
+                    acumSiSuperaLimite++;
                     flag = true;
                 }
             }
@@ -171,7 +185,7 @@ public class Calculator {
         tmSegundoTiroPara9 = (DefaultTableModel) tablaSimulacion.tblDespues9.getModel();
     }
 
-    public int cantidadExperimentos() {
-        return acumSiSupera120;
+    public int cantidadExperimentosValidos() {
+        return acumSiSuperaLimite;
     }
 }

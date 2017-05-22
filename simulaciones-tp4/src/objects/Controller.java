@@ -90,5 +90,9 @@ public class Controller {
         //tablaSimulacion = new SimulacionMontecarlo(cantSim, desde, hasta, this);
         //iniciarEspecífico();
     }
-    
+    public void setEspecificos(int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
+        defaul.setValoresEspecificos(cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);
+        //tablaSimulacion = new SimulacionMontecarlo(cantSim, desde, hasta, this);
+        //iniciarEspecífico();
+    }
 }

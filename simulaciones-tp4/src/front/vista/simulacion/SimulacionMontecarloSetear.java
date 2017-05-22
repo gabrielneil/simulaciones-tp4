@@ -6,6 +6,7 @@
 package front.vista.simulacion;
 
 import javax.swing.table.DefaultTableModel;
+import objects.Calculator;
 import objects.Controller;
 
 /**
@@ -18,6 +19,19 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
      * Creates new form SimulacionMontecarloSetear
      */
     Controller controller;
+    int cantRondas=0; 
+    int puntaje10PrimerTiro=0; 
+    int puntaje10SegundoTiro=0; 
+    int valorSuperar=0;
+    Calculator calculator = new Calculator();
+    
+    public void setEspecificos(int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
+        this.cantRondas = cantRondas;
+        this.puntaje10PrimerTiro = puntosPrimerTiro;
+        this.puntaje10SegundoTiro = puntosSegundoTiro;
+        this.valorSuperar = valorASuperar;
+    }
+    
     public SimulacionMontecarloSetear(Controller cont) {
         controller = cont;
         initComponents();
@@ -51,7 +65,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         _tblMontecarlo = new javax.swing.JTable();
         _lblTituloMontecarlo = new javax.swing.JLabel();
         _btnSimular = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_set = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -65,6 +79,9 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         _txtCantSim = new javax.swing.JTextField();
         _txtDesde = new javax.swing.JTextField();
         _txtHasta = new javax.swing.JTextField();
+        _txtValorSuperar = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        _btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -294,7 +311,12 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Setear valores");
+        btn_set.setText("Setear valores");
+        btn_set.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_setActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Volver");
 
@@ -309,6 +331,15 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         jLabel5.setText("Hasta");
 
         jLabel6.setText("Cantidad de simulaciones");
+
+        jLabel7.setText("Puntaje a superar");
+
+        _btnLimpiar.setText("Limpiar Campos");
+        _btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                _btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -325,18 +356,22 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                                 .addComponent(jLabel1))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)))
+                                .addComponent(jLabel3))
+                            .addComponent(jLabel7))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(_txtRondas, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(_txt10SegundoTiro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(_txt10PrimerTiro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(_txtRondas, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                            .addComponent(_txt10SegundoTiro, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                            .addComponent(_txt10PrimerTiro, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                            .addComponent(_txtValorSuperar))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
+                                .addComponent(_btnLimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_set)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(_btnSimular))
                             .addGroup(layout.createSequentialGroup()
@@ -378,8 +413,9 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(_btnSimular)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(btn_set)
+                            .addComponent(jButton2)
+                            .addComponent(_btnLimpiar))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(_txt10PrimerTiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -391,6 +427,10 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(_txtRondas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(_txtValorSuperar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -398,11 +438,18 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void _btnSimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__btnSimularActionPerformed
-        
+        DefaultTableModel model = (DefaultTableModel) _tblMontecarlo.getModel();
+        model.setRowCount(0);
+        calculator.especificoTablas(this, Integer.parseInt(_txtCantSim.getText()), Integer.parseInt(_txtDesde.getText()), Integer.parseInt(_txtHasta.getText()), cantRondas, puntaje10PrimerTiro, puntaje10SegundoTiro, valorSuperar);
+       
+    }//GEN-LAST:event__btnSimularActionPerformed
+
+    private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
         float probAc = 0;
+        
         for (int i = 0; i < tblPrimerTiro.getRowCount(); i++) {
             probAc += Float.parseFloat((String)tblPrimerTiro.getValueAt(i, 1));
-            tblPrimerTiro.setValueAt(probAc, i, 2);
+            tblPrimerTiro.setValueAt((float)probAc, i, 2);
         }
         probAc = 0;
         for (int i = 0; i < tblDespues7.getRowCount(); i++) {
@@ -421,7 +468,21 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
             probAc += Float.parseFloat((String)tblDespues9.getValueAt(i, 1));
             tblDespues9.setValueAt((float)probAc, i, 2);
         }
-    }//GEN-LAST:event__btnSimularActionPerformed
+        
+        setEspecificos(Integer.parseInt(_txtRondas.getText()), Integer.parseInt(_txt10PrimerTiro.getText()), Integer.parseInt(_txt10SegundoTiro.getText()), Integer.parseInt(_txtValorSuperar.getText()));
+        
+    }//GEN-LAST:event_btn_setActionPerformed
+
+    private void _btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__btnLimpiarActionPerformed
+        _txt10PrimerTiro.setText("");
+        _txt10SegundoTiro.setText("");
+        _txtCantSim.setText("");
+        _txtDesde.setText("");
+        _txtHasta.setText("");
+        _txtRondas.setText("");
+        _txtValorSuperar.setText("");
+        
+    }//GEN-LAST:event__btnLimpiarActionPerformed
     
     /**
      * @param args the command line arguments
@@ -429,6 +490,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton _btnLimpiar;
     private javax.swing.JButton _btnSimular;
     private javax.swing.JLabel _lbl7antes;
     private javax.swing.JLabel _lblDespues8;
@@ -442,7 +504,8 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     private javax.swing.JTextField _txtDesde;
     private javax.swing.JTextField _txtHasta;
     private javax.swing.JTextField _txtRondas;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField _txtValorSuperar;
+    private javax.swing.JButton btn_set;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -450,6 +513,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -458,9 +522,11 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDespues9;
-    private javax.swing.JTable tblDespues7;
-    private javax.swing.JTable tblDespues8;
-    private javax.swing.JTable tblDespues9;
-    private javax.swing.JTable tblPrimerTiro;
+    public javax.swing.JTable tblDespues7;
+    public javax.swing.JTable tblDespues8;
+    public javax.swing.JTable tblDespues9;
+    public javax.swing.JTable tblPrimerTiro;
     // End of variables declaration//GEN-END:variables
+    
+
 }

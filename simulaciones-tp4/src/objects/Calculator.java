@@ -6,6 +6,7 @@
 package objects;
 
 import front.vista.simulacion.SimulacionMontecarlo;
+import front.vista.simulacion.SimulacionMontecarloSetear;
 import java.text.DecimalFormat;
 import java.util.Random;
 import javax.swing.table.DefaultTableModel;
@@ -56,6 +57,19 @@ public class Calculator {
         }
         tablaSimulacion.setVisible(true);
     }
+    
+    public void especificoTablas(SimulacionMontecarloSetear tablaSimulacion, int cantSim, int desde, int hasta, int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
+        especificoSeteoTablas(tablaSimulacion);
+
+        for (int i = 0; i < cantSim; i++) {
+            if ((cantExperimentos >= desde && cantExperimentos <= hasta) || i == cantSim - 1) {
+                simulacionEnGrafico(cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);
+            } else {
+                simulacion(cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);
+            }
+        }
+    }
+    
 
     public void simulacion(int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
         Random r = new Random();
@@ -138,7 +152,7 @@ public class Calculator {
         int nPinosTirados = 0;
         for (int i = 0; i < tmPrimerTiro.getRowCount(); i++) {
             if (rnd1 < (float) tmPrimerTiro.getValueAt(i, 2)) {
-                nPinosTirados = (int) tmPrimerTiro.getValueAt(i, 0);
+                nPinosTirados = Integer.parseInt((String)tmPrimerTiro.getValueAt(i, 0));
                 break;
             }
         }
@@ -152,7 +166,7 @@ public class Calculator {
             case 7:
                 for (int i = 0; i < tmSegundoTiroPara7.getRowCount(); i++) {
                     if (rnd2 < (float) tmSegundoTiroPara7.getValueAt(i, 2)) {
-                        nPinosTirados = (int) tmSegundoTiroPara7.getValueAt(i, 0);
+                        nPinosTirados = Integer.parseInt((String)tmSegundoTiroPara7.getValueAt(i, 0));
                         break;
                     }
                 }
@@ -160,7 +174,7 @@ public class Calculator {
             case 8:
                 for (int i = 0; i < tmSegundoTiroPara8.getRowCount(); i++) {
                     if (rnd2 < (float) tmSegundoTiroPara8.getValueAt(i, 2)) {
-                        nPinosTirados = (int) tmSegundoTiroPara8.getValueAt(i, 0);
+                        nPinosTirados = Integer.parseInt((String)tmSegundoTiroPara8.getValueAt(i, 0));
                         break;
                     }
                 }
@@ -168,7 +182,7 @@ public class Calculator {
             case 9:
                 for (int i = 0; i < tmSegundoTiroPara9.getRowCount(); i++) {
                     if (rnd2 < (float) tmSegundoTiroPara9.getValueAt(i, 2)) {
-                        nPinosTirados = (int) tmSegundoTiroPara9.getValueAt(i, 0);
+                        nPinosTirados = Integer.parseInt((String)tmSegundoTiroPara9.getValueAt(i, 0));
                         break;
                     }
                 }
@@ -178,6 +192,14 @@ public class Calculator {
     }
 
     private void seteoTablas(SimulacionMontecarlo tablaSimulacion) {
+        tm = (DefaultTableModel) tablaSimulacion._tblMontecarlo.getModel();
+        tmPrimerTiro = (DefaultTableModel) tablaSimulacion.tblPrimerTiro.getModel();
+        tmSegundoTiroPara7 = (DefaultTableModel) tablaSimulacion.tblDespues7.getModel();
+        tmSegundoTiroPara8 = (DefaultTableModel) tablaSimulacion.tblDespues8.getModel();
+        tmSegundoTiroPara9 = (DefaultTableModel) tablaSimulacion.tblDespues9.getModel();
+    }
+    
+    private void especificoSeteoTablas(SimulacionMontecarloSetear tablaSimulacion) {
         tm = (DefaultTableModel) tablaSimulacion._tblMontecarlo.getModel();
         tmPrimerTiro = (DefaultTableModel) tablaSimulacion.tblPrimerTiro.getModel();
         tmSegundoTiroPara7 = (DefaultTableModel) tablaSimulacion.tblDespues7.getModel();

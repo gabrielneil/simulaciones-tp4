@@ -7,7 +7,6 @@ package objects;
 
 import front.vista.simulacion.SimulacionMontecarlo;
 import front.vista.simulacion.SimulacionMontecarloSetear;
-import java.text.DecimalFormat;
 import java.util.Random;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,7 +35,7 @@ public class Calculator {
         seteoTablas(tablaSimulacion);
 
         for (int i = 0; i < cantSim; i++) {
-            if ((cantExperimentos >= desde && cantExperimentos <= hasta) || i == cantSim - 1) {
+            if ((i >= desde - 1 && i <= hasta - 1) || i == cantSim - 1) {
                 simulacionEnGrafico(10, 20, 15, 120);
             } else {
                 simulacion(10, 20, 15, 120);
@@ -49,7 +48,7 @@ public class Calculator {
         seteoTablas(tablaSimulacion);
 
         for (int i = 0; i < cantSim; i++) {
-            if ((cantExperimentos >= desde && cantExperimentos <= hasta) || i == cantSim - 1) {
+            if ((i >= desde - 1 && i <= hasta - 1) || i == cantSim - 1) {
                 simulacionEnGrafico(cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);
             } else {
                 simulacion(cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);
@@ -62,7 +61,7 @@ public class Calculator {
         especificoSeteoTablas(tablaSimulacion);
 
         for (int i = 0; i < cantSim; i++) {
-            if ((cantExperimentos >= desde && cantExperimentos <= hasta) || i == cantSim - 1) {
+            if ((i >= desde - 1 && i <= hasta - 1) || i == cantSim - 1) {
                 simulacionEnGrafico(cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);
             } else {
                 simulacion(cantRondas, puntosPrimerTiro, puntosSegundoTiro, valorASuperar);

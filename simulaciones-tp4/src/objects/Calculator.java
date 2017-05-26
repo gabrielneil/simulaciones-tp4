@@ -151,7 +151,7 @@ public class Calculator {
         int nPinosTirados = 0;
         for (int i = 0; i < tmPrimerTiro.getRowCount(); i++) {
             if (rnd1 < (float) tmPrimerTiro.getValueAt(i, 2)) {
-                nPinosTirados = Integer.parseInt((String)tmPrimerTiro.getValueAt(i, 0));
+                nPinosTirados = (int)tmPrimerTiro.getValueAt(i, 0);
                 break;
             }
         }
@@ -165,7 +165,7 @@ public class Calculator {
             case 7:
                 for (int i = 0; i < tmSegundoTiroPara7.getRowCount(); i++) {
                     if (rnd2 < (float) tmSegundoTiroPara7.getValueAt(i, 2)) {
-                        nPinosTirados = Integer.parseInt((String)tmSegundoTiroPara7.getValueAt(i, 0));
+                        nPinosTirados = (int)tmSegundoTiroPara7.getValueAt(i, 0);
                         break;
                     }
                 }
@@ -173,7 +173,7 @@ public class Calculator {
             case 8:
                 for (int i = 0; i < tmSegundoTiroPara8.getRowCount(); i++) {
                     if (rnd2 < (float) tmSegundoTiroPara8.getValueAt(i, 2)) {
-                        nPinosTirados = Integer.parseInt((String)tmSegundoTiroPara8.getValueAt(i, 0));
+                        nPinosTirados = (int)tmSegundoTiroPara8.getValueAt(i, 0);
                         break;
                     }
                 }
@@ -181,7 +181,7 @@ public class Calculator {
             case 9:
                 for (int i = 0; i < tmSegundoTiroPara9.getRowCount(); i++) {
                     if (rnd2 < (float) tmSegundoTiroPara9.getValueAt(i, 2)) {
-                        nPinosTirados = Integer.parseInt((String)tmSegundoTiroPara9.getValueAt(i, 0));
+                        nPinosTirados = (int)tmSegundoTiroPara9.getValueAt(i, 0);
                         break;
                     }
                 }

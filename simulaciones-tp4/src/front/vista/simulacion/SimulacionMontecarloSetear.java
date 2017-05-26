@@ -36,7 +36,6 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         controller = cont;
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +45,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -82,6 +82,12 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         _txtValorSuperar = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         _btnLimpiar = new javax.swing.JButton();
+        resultado_txt = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Resultados");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,18 +96,25 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
 
         tblPrimerTiro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"7", null, null},
-                {"8", null, null},
-                {"9", null, null},
-                {"10", null, null}
+                { new Integer(7), null, null},
+                { new Integer(8), null, null},
+                { new Integer(9), null, null},
+                { new Integer(10), null, null}
             },
             new String [] {
                 "# Pinos", "Probabilidad", "P. Acumulada"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, true, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -111,18 +124,25 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
 
         tblDespues8.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"0", null, null},
-                {"1", null, null},
-                {"2", null, null},
-                {"3", null, null}
+                { new Integer(0), null, null},
+                { new Integer(1), null, null},
+                { new Integer(2), null, null},
+                { new Integer(3), null, null}
             },
             new String [] {
                 "# Pinos", "Probabilidad", "P. Acumulada"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -132,16 +152,23 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
 
         tblDespues9.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"0", null, null},
-                {"1", null, null}
+                { new Integer(0), null, null},
+                { new Integer(1), null, null}
             },
             new String [] {
                 "# Pinos", "Probabilidad", "P. Acumulada"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -154,17 +181,24 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
 
         tblDespues7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"0", null, null},
-                {"1", null, null},
-                {"2", null, null}
+                { new Integer(0), null, null},
+                { new Integer(1), null, null},
+                { new Integer(2), null, null}
             },
             new String [] {
                 "# Pinos", "Probabilidad", "P. Acumulada"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -319,6 +353,11 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         });
 
         jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Puntaje de 10 pinos en el primer tiro");
 
@@ -340,6 +379,8 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                 _btnLimpiarActionPerformed(evt);
             }
         });
+
+        jLabel9.setText("La probabilidad de que supere es:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -383,8 +424,14 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(_txtHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(_txtCantSim, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(_txtDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(_txtDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(104, 104, 104)
+                                        .addComponent(resultado_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(_txtCantSim, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -399,13 +446,20 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(_txtCantSim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(_txtDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(_txtCantSim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel6))
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(_txtDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel4)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(resultado_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(_txtHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -441,31 +495,31 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) _tblMontecarlo.getModel();
         model.setRowCount(0);
         calculator.especificoTablas(this, Integer.parseInt(_txtCantSim.getText()), Integer.parseInt(_txtDesde.getText()), Integer.parseInt(_txtHasta.getText()), cantRondas, puntaje10PrimerTiro, puntaje10SegundoTiro, valorSuperar);
-       
+       resultado_txt.setText(Double.toString((double)calculator.cantidadExperimentosValidos()/Double.parseDouble(_txtCantSim.getText())));
     }//GEN-LAST:event__btnSimularActionPerformed
 
     private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
         float probAc = 0;
         
         for (int i = 0; i < tblPrimerTiro.getRowCount(); i++) {
-            probAc += Float.parseFloat((String)tblPrimerTiro.getValueAt(i, 1));
+            probAc += (float)tblPrimerTiro.getValueAt(i, 1);
             tblPrimerTiro.setValueAt((float)probAc, i, 2);
         }
         probAc = 0;
         for (int i = 0; i < tblDespues7.getRowCount(); i++) {
-            probAc += Float.parseFloat((String)tblDespues7.getValueAt(i, 1));
+            probAc += (float)tblDespues7.getValueAt(i, 1);
             tblDespues7.setValueAt((float)probAc, i, 2);
         }
         
         probAc = 0;
         for (int i = 0; i < tblDespues8.getRowCount(); i++) {
-            probAc += Float.parseFloat((String)tblDespues8.getValueAt(i, 1));
+            probAc += (float)tblDespues8.getValueAt(i, 1);
             tblDespues8.setValueAt((float)probAc, i, 2);
         }
         
         probAc = 0;
         for (int i = 0; i < tblDespues9.getRowCount(); i++) {
-            probAc += Float.parseFloat((String)tblDespues9.getValueAt(i, 1));
+            probAc += (float)tblDespues9.getValueAt(i, 1);
             tblDespues9.setValueAt((float)probAc, i, 2);
         }
         
@@ -483,6 +537,12 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         _txtValorSuperar.setText("");
         
     }//GEN-LAST:event__btnLimpiarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        controller.showMenu();
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -514,6 +574,8 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -522,6 +584,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDespues9;
+    private javax.swing.JTextField resultado_txt;
     public javax.swing.JTable tblDespues7;
     public javax.swing.JTable tblDespues8;
     public javax.swing.JTable tblDespues9;

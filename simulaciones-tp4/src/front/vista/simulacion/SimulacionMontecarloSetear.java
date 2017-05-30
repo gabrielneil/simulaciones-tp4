@@ -5,6 +5,8 @@
  */
 package front.vista.simulacion;
 
+import front.vista.simulacion.exception.*;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import objects.Calculator;
 import objects.Controller;
@@ -24,6 +26,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     int puntaje10SegundoTiro=0; 
     int valorSuperar=0;
     Calculator calculator = new Calculator();
+    boolean valuesSet = false;
     
     public void setEspecificos(int cantRondas, int puntosPrimerTiro, int puntosSegundoTiro, int valorASuperar) {
         this.cantRondas = cantRondas;
@@ -492,38 +495,141 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void _btnSimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__btnSimularActionPerformed
+        if (!valuesSet)
+        {
+            //Solo para que valide que este todo
+            btn_setActionPerformed(null);
+        }
         DefaultTableModel model = (DefaultTableModel) _tblMontecarlo.getModel();
         model.setRowCount(0);
+        try
+        {
+            ingresosValidos();
+        }
+        catch(InputException invalidInput)
+        {
+            JOptionPane.showMessageDialog(null, invalidInput.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }  
         calculator.especificoTablas(this, Integer.parseInt(_txtCantSim.getText()), Integer.parseInt(_txtDesde.getText()), Integer.parseInt(_txtHasta.getText()), cantRondas, puntaje10PrimerTiro, puntaje10SegundoTiro, valorSuperar);
-       resultado_txt.setText(Double.toString((double)calculator.cantidadExperimentosValidos()/Double.parseDouble(_txtCantSim.getText())));
+        resultado_txt.setText(Double.toString((double)calculator.cantidadExperimentosValidos()/Double.parseDouble(_txtCantSim.getText())));
     }//GEN-LAST:event__btnSimularActionPerformed
 
+    private void ingresosValidos() throws InputException
+    {
+        if (_txtCantSim.getText() == null || "".equals(_txtCantSim.getText()))
+        {
+            throw new InputException("Ingrese cantidad de Simulaciones");
+        }
+        
+        if (_txtDesde.getText() == null || "".equals(_txtDesde.getText()))
+        {
+            throw new InputException("Ingrese desde qué simulacion quiere visualizar");
+        }
+        
+        if (_txtHasta.getText() == null || "".equals(_txtHasta.getText()))
+        {
+            throw new InputException("Ingrese hasta qué simulacion quiere visualizar");
+        }
+    }
     private void btn_setActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_setActionPerformed
         float probAc = 0;
         
-        for (int i = 0; i < tblPrimerTiro.getRowCount(); i++) {
-            probAc += (float)tblPrimerTiro.getValueAt(i, 1);
-            tblPrimerTiro.setValueAt((float)probAc, i, 2);
+        try
+        {
+            for (int i = 0; i < tblPrimerTiro.getRowCount(); i++) 
+            {
+                if (tblPrimerTiro.getValueAt(i, 1) != null && tblPrimerTiro.getValueAt(i, 1) instanceof Float)
+                {
+                    probAc += (float)tblPrimerTiro.getValueAt(i, 1);
+                    tblPrimerTiro.setValueAt((float)probAc, i, 2);
+                }
+                else
+                {
+                    throw new InputException("Probabilidad Invalida en tabla Primer Tiro");
+                }
+            }
+            if (probAc != 1)
+            {
+                throw new InputException("La probabilidad acumulada debe ser igual a 1 en la tabla Primer Tiro");
+            }
+            probAc = 0;
+            for (int i = 0; i < tblDespues7.getRowCount(); i++) 
+            {
+                if (tblDespues7.getValueAt(i, 1) != null && tblDespues7.getValueAt(i, 1) instanceof Float)
+                {
+                    probAc += (float)tblDespues7.getValueAt(i, 1);
+                    tblDespues7.setValueAt((float)probAc, i, 2);
+                }
+                else
+                {
+                    throw new InputException("Probabilidad Invalida en tabla si se tiraron 7");
+                }
+            }
+
+            if (probAc != 1)
+            {
+                throw new InputException("La probabilidad acumulada debe ser igual a 1 en la tabla si se tiraron 7");
+            }
+            probAc = 0;
+            for (int i = 0; i < tblDespues8.getRowCount(); i++) 
+            {
+                if (tblDespues8.getValueAt(i, 1) != null && tblDespues8.getValueAt(i, 1) instanceof Float)
+                {
+                    probAc += (float)tblDespues8.getValueAt(i, 1);
+                    tblDespues8.setValueAt((float)probAc, i, 2);
+                }
+                else
+                {
+                    throw new InputException("Probabilidad Invalida en tabla si se tiraron 8");
+                }
+            }
+
+            if (probAc != 1)
+            {
+                throw new InputException("La probabilidad acumulada debe ser igual a 1 en la tabla si se tiraron 8");
+            }
+            probAc = 0;
+            for (int i = 0; i < tblDespues9.getRowCount(); i++) 
+            {
+                if (tblDespues9.getValueAt(i, 1) != null && tblDespues9.getValueAt(i, 1) instanceof Float)
+                {
+                    probAc += (float)tblDespues9.getValueAt(i, 1);
+                    tblDespues9.setValueAt((float)probAc, i, 2);
+                }
+                else
+                {
+                    throw new InputException("Probabilidad Invalida en tabla si se tiraron 9");
+                }
+            }
+            
+            if (probAc != 1)
+            {
+                throw new InputException("La probabilidad acumulada debe ser igual a 1 en la tabla si se tiraron 9");
+            }
+            if (_txtRondas.getText() == null || "".equals(_txtRondas.getText()))
+            {
+                throw new InputException("Ingrese rondas");
+            }
+            if (_txt10PrimerTiro.getText() == null || "".equals(_txt10PrimerTiro.getText()))
+            {
+                throw new InputException("Ingrese puntos de tirar 10 pinos primer tiro");
+            }
+            if (_txt10SegundoTiro.getText() == null || "".equals(_txt10SegundoTiro.getText()))
+            {
+                throw new InputException("Ingrese puntos de tirar 10 pinos segundo tiro");
+            }
+            if (_txtValorSuperar.getText() == null || "".equals(_txtValorSuperar.getText()))
+            {
+                throw new InputException("Ingrese puntos a superar");
+            }
+            setEspecificos(Integer.parseInt(_txtRondas.getText()), Integer.parseInt(_txt10PrimerTiro.getText()), Integer.parseInt(_txt10SegundoTiro.getText()), Integer.parseInt(_txtValorSuperar.getText()));
+            valuesSet = true;
         }
-        probAc = 0;
-        for (int i = 0; i < tblDespues7.getRowCount(); i++) {
-            probAc += (float)tblDespues7.getValueAt(i, 1);
-            tblDespues7.setValueAt((float)probAc, i, 2);
+        catch(InputException inputInvalid)
+        {
+            JOptionPane.showMessageDialog(null, inputInvalid.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        probAc = 0;
-        for (int i = 0; i < tblDespues8.getRowCount(); i++) {
-            probAc += (float)tblDespues8.getValueAt(i, 1);
-            tblDespues8.setValueAt((float)probAc, i, 2);
-        }
-        
-        probAc = 0;
-        for (int i = 0; i < tblDespues9.getRowCount(); i++) {
-            probAc += (float)tblDespues9.getValueAt(i, 1);
-            tblDespues9.setValueAt((float)probAc, i, 2);
-        }
-        
-        setEspecificos(Integer.parseInt(_txtRondas.getText()), Integer.parseInt(_txt10PrimerTiro.getText()), Integer.parseInt(_txt10SegundoTiro.getText()), Integer.parseInt(_txtValorSuperar.getText()));
         
     }//GEN-LAST:event_btn_setActionPerformed
 

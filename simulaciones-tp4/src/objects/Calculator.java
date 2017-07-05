@@ -209,4 +209,9 @@ public class Calculator {
     public int cantidadExperimentosValidos() {
         return acumSiSuperaLimite;
     }
+
+    public void volver(){
+                acumSiSuperaLimite = 0;
+        cantExperimentos = 1;
+    }
 }

@@ -129,8 +129,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
             new Object [][] {
                 { new Integer(0), null, null},
                 { new Integer(1), null, null},
-                { new Integer(2), null, null},
-                { new Integer(3), null, null}
+                { new Integer(2), null, null}
             },
             new String [] {
                 "# Pinos", "Probabilidad", "P. Acumulada"
@@ -140,7 +139,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -186,7 +185,8 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
             new Object [][] {
                 { new Integer(0), null, null},
                 { new Integer(1), null, null},
-                { new Integer(2), null, null}
+                { new Integer(2), null, null},
+                { new Integer(3), null, null}
             },
             new String [] {
                 "# Pinos", "Probabilidad", "P. Acumulada"
@@ -196,7 +196,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -241,7 +241,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(_lblPrimerTiro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -252,7 +252,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(_lbl7antes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +273,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Distribuciones de frecuencias", jPanel1);
@@ -513,6 +513,7 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         }  
         calculator.especificoTablas(this, Integer.parseInt(_txtCantSim.getText()), Integer.parseInt(_txtDesde.getText()), Integer.parseInt(_txtHasta.getText()), cantRondas, puntaje10PrimerTiro, puntaje10SegundoTiro, valorSuperar);
         resultado_txt.setText(Double.toString((double)calculator.cantidadExperimentosValidos()/Double.parseDouble(_txtCantSim.getText())));
+        calculator.volver();
     }//GEN-LAST:event__btnSimularActionPerformed
 
     private void ingresosValidos() throws InputException
@@ -641,7 +642,8 @@ public class SimulacionMontecarloSetear extends javax.swing.JFrame {
         _txtHasta.setText("");
         _txtRondas.setText("");
         _txtValorSuperar.setText("");
-        
+        DefaultTableModel dtm = (DefaultTableModel) _tblMontecarlo.getModel();
+        dtm.setRowCount(0);
     }//GEN-LAST:event__btnLimpiarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
